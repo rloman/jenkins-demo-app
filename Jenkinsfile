@@ -18,4 +18,18 @@ pipeline {
             }
         }
     }
+
+    post {
+
+        failure {
+
+        }
+        success {
+
+        }
+        always {
+            echo "Build completed (in post)"
+
+        }
+    }
 }
