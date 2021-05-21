@@ -22,14 +22,21 @@ pipeline {
     post {
 
         failure {
+            steps {
+
+            }
 
         }
         success {
+            steps {
+
+            }
 
         }
         always {
-            echo "Build completed (in post)"
-
+            steps {
+                echo "Build completed (in post)"
+            }
         }
     }
 }
