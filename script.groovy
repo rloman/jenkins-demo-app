@@ -5,10 +5,10 @@ def buildApp() {
     sh 'mvn clean verify'
 }
 
-def printSome(getal1, getal2) {
+def printSome(user, pass) {
 
-    echo getal1
-    echo getal2
+    echo user
+    echo pass
 }
 
 return this; // this is, so that Jenkins can get a hold of this scripts as a reference

@@ -48,9 +48,9 @@ pipeline {
                 echo "Deploying the application ... "
                 script {
                     withCredentials([usernamePassword(credentialsId: 'registry.hub.docker.com',
-                            usernameVariable: 'getal1', passwordVariable: 'getal2'
+                            usernameVariable: 'USER', passwordVariable: 'PWD'
                     )]) {
-                        gv.printSome(getal1, getal2)
+                        gv.printSome(USER, PWD)
                     }
                 }
 
