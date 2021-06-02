@@ -30,6 +30,11 @@ pipeline {
         stage("deploy") {
             steps {
                 echo "Deploying the application ... "
+                withCredentials([usernamePassword(credentials: 'registry.hub.docker.com',
+                        usernameVariable: USER, passwordVariable: PWD
+                    )]) {
+                    echo "Username is: ${USER} and pass: ${PWD}"
+                }
             }
         }
     }
