@@ -33,7 +33,7 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'registry.hub.docker.com',
                         usernameVariable: 'USER', passwordVariable: 'PWD'
                     )]) {
-                    sh "some script ${USER} ${PWD}"
+                    echo "some script ${USER} ${PWD}"
                 }
             }
         }
