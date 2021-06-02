@@ -14,7 +14,8 @@
 	<name>demo-app</name>
 	<description>demo-app</description>
 	<properties>
-		<java.version>11</java.version>
+		<!-- Upgrade Jenkins (later) to Java 11 -->
+		<java.version>8</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
