@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment {
+        NEW_VERSION = "0.2.0-SNAPSHOT"
+    }
 
     stages {
         stage("build") {
@@ -20,6 +23,7 @@ pipeline {
             }
             steps {
                 echo "Releasing the application (using the release/ branch) ... "
+                echo "Release the app with version: ${NEW_VERSION}"
                 echo "Release the app with build number: ${BUILD_NUMBER}"
             }
         }
