@@ -1,3 +1,6 @@
+
+def gv; // holds the groovy script which in initialised below in the init step
+
 pipeline {
     agent any
     tools {
@@ -8,10 +11,19 @@ pipeline {
     }
 
     stages {
+        stage("init") {
+            steps {
+                script {
+                    gv = load "script.groovy"
+                }
+            }
+        }
         stage("build") {
             steps {
-                echo "Building the application ... "
-                sh 'mvn clean verify'
+                script {
+                    gv.buildApp()
+                }
+                //sh 'mvn clean verify'
             }
         }
         stage("test") {
