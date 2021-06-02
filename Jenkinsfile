@@ -20,6 +20,7 @@ pipeline {
             }
             steps {
                 echo "Releasing the application (using the release/ branch) ... "
+                echo "Release the app with build number: ${BUILD_NUMBER}"
             }
         }
         stage("deploy") {
