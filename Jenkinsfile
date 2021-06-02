@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    tools {
+        maven 'Maven'
+    }
     environment {
         NEW_VERSION = "0.2.0-SNAPSHOT"
     }
@@ -8,6 +11,7 @@ pipeline {
         stage("build") {
             steps {
                 echo "Building the application ... "
+                sh 'mvn clean verify'
             }
         }
         stage("test") {
