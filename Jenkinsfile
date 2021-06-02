@@ -31,7 +31,7 @@ pipeline {
             steps {
                 echo "Deploying the application ... "
                 withCredentials([usernamePassword(credentials: 'registry.hub.docker.com',
-                        usernameVariable: USER, passwordVariable: PWD
+                        usernameVariable: 'USER', passwordVariable: 'PWD'
                     )]) {
                     sh "some script ${USER} ${PWD}"
                 }
