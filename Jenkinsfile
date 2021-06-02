@@ -46,11 +46,14 @@ pipeline {
         stage("deploy") {
             steps {
                 echo "Deploying the application ... "
-                withCredentials([usernamePassword(credentialsId: 'registry.hub.docker.com',
-                        usernameVariable: 'USER', passwordVariable: 'PWD'
+                script {
+                    withCredentials([usernamePassword(credentialsId: 'registry.hub.docker.com',
+                            usernameVariable: 'USER', passwordVariable: 'PWD'
                     )]) {
-                    sh "printSome.sh ${USER} ${PWD}"
+                        gv.printSome(${USER}, ${PWD})
+                    }
                 }
+
             }
         }
     }
