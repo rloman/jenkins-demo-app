@@ -18,7 +18,7 @@ pipeline {
         stage("release") {
             when {
                 expression {
-                    BRANCH_NAME == 'release' || BRANCH_NAME == 'master'
+                    BRANCH_NAME == 'release/*' || BRANCH_NAME == 'master'
                 }
             }
             steps {
