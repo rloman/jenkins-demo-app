@@ -50,7 +50,7 @@ pipeline {
                     withCredentials([usernamePassword(credentialsId: 'registry.hub.docker.com',
                             usernameVariable: 'USER', passwordVariable: 'PWD'
                     )]) {
-                        gv.printSome(${USER}, ${PWD})
+                        gv.printSome(USER, PWD)
                     }
                 }
 
