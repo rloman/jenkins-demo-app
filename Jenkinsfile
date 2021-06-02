@@ -12,6 +12,16 @@ pipeline {
                 echo "Testing the application ... "
             }
         }
+        stage("release") {
+            when {
+                expression {
+                    BRANCH_NAME == 'release' || BRANCH_NAME == 'master'
+                }
+            }
+            steps {
+                echo "Releasing the application (using the release/ branch) ... "
+            }
+        }
         stage("deploy") {
             steps {
                 echo "Deploying the application ... "
