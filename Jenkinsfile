@@ -32,12 +32,8 @@ pipeline {
         }
         stage("release") {
             when {
-                expression {
-                    when {
-                        anyOf {
-                            branch 'develop'; branch 'release/*'; branch 'hotfix/*'
-                        }
-                    }
+                anyOf {
+                    branch 'develop'; branch 'release/*'; branch 'hotfix/*'
                 }
             }
             steps {
