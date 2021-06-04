@@ -53,7 +53,6 @@ pipeline {
                         gv.printSome(USER, PWD)
                     }
                 }
-
             }
         }
     }
