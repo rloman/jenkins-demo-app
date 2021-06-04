@@ -26,25 +26,30 @@ pipeline {
             }
         }
         stage("test") {
-            steps {
+            steps { // for every branch
                 echo "Testing the application ... "
             }
         }
-        stage("release") {
+        stage("acceptance") {
             when {
                 anyOf {
-                    branch 'develop'; branch 'release/*'; branch 'hotfix/*'
+                    branch 'release/*'; branch 'hotfix/*'
                 }
             }
             steps {
-                echo "Releasing the application (using the release/ branch) ... "
+                echo "Releasing the application to acceptance (using the release/ branch) ... "
                 echo "Release the app with version: ${NEW_VERSION}"
                 echo "Release the app with build number: ${BUILD_NUMBER}"
             }
         }
-        stage("deploy") {
+        stage("prod") {
+            when {
+                anyOf {
+                    branch 'master'
+                }
+            }
             steps {
-                echo "Deploying the application ... "
+                echo "Deploying the application to production ... since the master branch is updated"
                 script {
                     withCredentials([usernamePassword(credentialsId: 'registry.hub.docker.com',
                             usernameVariable: 'USER', passwordVariable: 'PWD'
