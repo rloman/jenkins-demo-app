@@ -1,4 +1,3 @@
-
 def gv; // holds the groovy script which in initialised below in the init step
 
 pipeline {
@@ -34,7 +33,11 @@ pipeline {
         stage("release") {
             when {
                 expression {
-                    BRANCH_NAME == 'release/*' || BRANCH_NAME == 'master'
+                    when {
+                        anyOf {
+                            branch 'develop'; branch 'release/*'; branch 'hotfix/*'
+                        }
+                    }
                 }
             }
             steps {
