@@ -15,6 +15,8 @@ pipeline {
     }
     environment {
         NEW_VERSION = "0.2.0-SNAPSHOT"
+        IMAGE = readMavenPom().getArtifactId()
+        VERSION = readMavenPom().getVersion()
     }
 
     stages {
@@ -87,7 +89,7 @@ pipeline {
         }
         always {
             echo "Build completed in always (in post)"
-            echo "project.version is: [${project.version}]"
+            echo "project.version is: [${VERSION}]"
         }
     }
 }
