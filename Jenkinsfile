@@ -73,7 +73,7 @@ pipeline {
             steps {
                 echo "Deploying the application to release with docker"
                 script {
-                    sh "docker container rm -f ${BUILD_TAG}-v${VERSION}"
+//                    sh "docker container stop -f ${BUILD_TAG}-v${VERSION}"
                     sh "docker container run -dit --name ${BUILD_TAG}-v${VERSION} -p ${port}:8080 rloman/backend-scaffolder:2.3.0-SNAPSHOT"
                 }
             }
