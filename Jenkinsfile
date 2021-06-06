@@ -15,7 +15,7 @@ pipeline {
     }
     environment {
         NEW_VERSION = "0.2.0-SNAPSHOT"
-        IMAGE = readMavenPom().getArtifactId()
+        ARTIFACTID = readMavenPom().getArtifactId()
         VERSION = readMavenPom().getVersion()
     }
 
@@ -74,7 +74,7 @@ pipeline {
                 echo "Deploying the application to release with docker"
                 script {
                     sh "docker container rm -f scaffolder"
-                    sh "docker container run -dit --name scaffolder -p ${port}:8080 rloman/backend-scaffolder:2.3.0-SNAPSHOT"
+                    sh "docker container run -dit --name ${ARTIFACTID}-${env.BRANCH_NAME}-${VERSION} -p ${port}:8080 rloman/backend-scaffolder:2.3.0-SNAPSHOT"
                 }
             }
         }
@@ -89,7 +89,7 @@ pipeline {
         }
         always {
             echo "Build completed in always (in post)"
-            echo "project.version is: [${VERSION}]"
+            echo "project.version is:  [${VERSION}]"
         }
     }
 }
