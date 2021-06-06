@@ -1,4 +1,12 @@
 def gv; // holds the groovy script which in initialised below in the init step
+def port = 8088;
+
+if (env.BRANCH_NAME == "release/v0.2.0") {
+    port = 8089
+}
+if (env.BRANCH_NAME == "master") {
+    port = 8090
+}
 
 pipeline {
     agent any
@@ -56,6 +64,15 @@ pipeline {
                     )]) {
                         gv.printSome(USER, PWD)
                     }
+                }
+            }
+        }
+        stage("docker") {
+            steps {
+                echo "Deploying the application to release with docker"
+                script {
+                    sh "docker container rm -f scaffolder"
+                    sh "docker container run -dit --name scaffolder -p ${port}:8080 rloman/backend-scaffolder:2.3.0-SNAPSHOT"
                 }
             }
         }
