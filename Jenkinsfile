@@ -87,6 +87,7 @@ pipeline {
         }
         always {
             echo "Build completed in always (in post)"
+            echo "project.version is: [${project.version}]"
         }
     }
 }
