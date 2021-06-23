@@ -2,9 +2,6 @@ def gv; // holds the groovy script which in initialised below in the init step
 
 pipeline {
     agent any
-    tools {
-        maven 'Maven'
-    }
     environment {
         NEW_VERSION = "0.2.0-SNAPSHOT"
     }
@@ -50,13 +47,6 @@ pipeline {
             }
             steps {
                 echo "Deploying the application to production ... since the master branch is updated"
-                script {
-                    withCredentials([usernamePassword(credentialsId: 'registry.hub.docker.com',
-                            usernameVariable: 'USER', passwordVariable: 'PWD'
-                    )]) {
-                        gv.printSome(USER, PWD)
-                    }
-                }
             }
         }
     }
