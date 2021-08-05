@@ -22,7 +22,7 @@ pipeline {
                 script {
                     gv.buildApp()
                 }
-                //sh 'mvn clean verify'
+                sh 'mvn clean verify'
             }
         }
         stage("test") {
