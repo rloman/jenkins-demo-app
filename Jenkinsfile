@@ -6,7 +6,7 @@ pipeline {
         NEW_VERSION = "0.2.0-SNAPSHOT"
     }
     triggers {
-        pollSCM('H 5-17 * * 1-5')
+        pollSCM('H/5 5-17 * * 1-5')
     }
 
     stages {
@@ -22,7 +22,7 @@ pipeline {
                 script {
                     gv.buildApp()
                 }
-                // sh 'mvn clean verify'
+                sh 'mvn clean verify'
             }
         }
         stage("test") {
