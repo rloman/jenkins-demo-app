@@ -5,6 +5,9 @@ pipeline {
     environment {
         NEW_VERSION = "0.2.0-SNAPSHOT"
     }
+    triggers { // <= add this section for triggering using a crontab expression
+        cron('* 9-17 * * 1-5')
+    }
 
     stages {
         stage("init") {
