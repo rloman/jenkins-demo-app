@@ -10,9 +10,6 @@ if (env.BRANCH_NAME == "master") {
 
 pipeline {
     agent any
-    tools {
-        maven 'Maven'
-    }
     environment {
         NEW_VERSION = "0.2.0-SNAPSHOT"
         ARTIFACTID = readMavenPom().getArtifactId()
@@ -60,13 +57,6 @@ pipeline {
             }
             steps {
                 echo "Deploying the application to production ... since the master branch is updated"
-                script {
-                    withCredentials([usernamePassword(credentialsId: 'registry.hub.docker.com',
-                            usernameVariable: 'USER', passwordVariable: 'PWD'
-                    )]) {
-                        gv.printSome(USER, PWD)
-                    }
-                }
             }
         }
         stage("docker") {

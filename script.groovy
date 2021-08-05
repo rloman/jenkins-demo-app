@@ -2,7 +2,7 @@ import com.fasterxml.jackson.databind.ser.std.JsonValueSerializer
 
 def buildApp() {
     echo "Building the application"
-    sh 'mvn clean verify'
+    // Disable maven for now, might come back later on sh 'mvn clean verify'
 }
 
 def printSome(user, pass) {
