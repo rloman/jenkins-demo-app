@@ -20,7 +20,7 @@ pipeline {
         stage("build") {
             steps {
                 script {
-                    gv.build()
+                    gv.buildApp()
                 }
                 // sh 'mvn clean verify'
             }
